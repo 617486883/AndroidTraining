@@ -9,18 +9,28 @@ public class User implements Serializable{
    private String password;
    private String userName;
    private String type;
+    private String imgUrl;
 
     public User() {
 
     }
 
-    public User(int state, String stateInfo, String name, String password, String userName, String type) {
+    public User(int state, String stateInfo, String name, String password, String userName, String type, String imgUrl) {
         this.state = state;
         this.stateInfo = stateInfo;
         this.name = name;
         this.password = password;
         this.userName = userName;
         this.type = type;
+        this.imgUrl = imgUrl;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     public int getState() {
@@ -80,6 +90,7 @@ public class User implements Serializable{
                 ", password='" + password + '\'' +
                 ", userName='" + userName + '\'' +
                 ", type='" + type + '\'' +
+                ", imgUrl='" + imgUrl + '\'' +
                 '}';
     }
 }

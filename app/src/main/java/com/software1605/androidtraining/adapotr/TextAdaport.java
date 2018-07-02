@@ -7,18 +7,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.software1605.androidtraining.R;
-import com.software1605.androidtraining.entity.Coord;
+import com.software1605.androidtraining.entity.Text;
 
 import java.util.List;
 
-public class TextAdaport extends ArrayAdapter<Coord> {
+import de.hdodenhof.circleimageview.CircleImageView;
 
+public class TextAdaport extends ArrayAdapter<Text> {
+    String IMG_URL_HTTP="http://wxscjy.free.ngrok.cc/";
+    private CircleImageView imageView;
+    private TextView title;
+    private TextView contennt;
     private int resourcesId;
-    public TextAdaport(@NonNull Context context, int textViewResourceId, List<Coord> objects) {
+
+
+    public TextAdaport(@NonNull Context context, int textViewResourceId, List<Text> objects) {
         super(context,textViewResourceId,objects);
         resourcesId = textViewResourceId;
     }
@@ -26,14 +33,15 @@ public class TextAdaport extends ArrayAdapter<Coord> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        Coord coord = getItem(position);
+        Text text = getItem(position);
         View view = LayoutInflater.from(getContext()).inflate(resourcesId,null);
-        ImageView imageView = view.findViewById(R.id.ivImage);
-        TextView textView = view.findViewById(R.id.tvTittle);
-        TextView contennt = view.findViewById(R.id.tvContent);
-        imageView.setImageResource(coord.getId());
-        textView.setText(coord.getName());
-        contennt.setText(coord.getName());
+        imageView = view.findViewById(R.id.ivImage);
+        title = view.findViewById(R.id.tvTittle);
+        contennt = view.findViewById(R.id.tvContent);
+        //从网络获取远程图片数据
+        Glide.with(getContext()).load(IMG_URL_HTTP+text.getImgUrl()).into(imageView);
+        title.setText(text.getTitle());
+        contennt.setText(text.getContent());
         return view;
     }
 }
