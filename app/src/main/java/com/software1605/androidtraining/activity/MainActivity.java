@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
         sp = this.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
 
-        if (sp.getString("name",null).equals("")){
+        if (sp.getString("name",null) == null || sp.getString("name",null).equals("")){
             //传递数据，从登录拿到用户
             user = UserInfo.getUserInfo().getUser();
         }else {

@@ -5,17 +5,18 @@ public class Coord {
     private double longitude;
     private double latitude;
     private String name;
-    private int userId;
+    private String  userName;
     private String imgId;
 
-    public Coord(int id, double longitude, double latitude, String name, int userId,String imgId) {
+    public Coord(int id, double longitude, double latitude, String name, String userName,String imgId) {
         this.id = id;
         this.longitude = longitude;
         this.latitude = latitude;
         this.name = name;
-        this.userId = userId;
+        this.userName = userName;
         this.imgId = imgId;
     }
+
 
     public String getImgId() {
         return imgId;
@@ -57,12 +58,12 @@ public class Coord {
         this.name = name;
     }
 
-    public int getUserId() {
-        return userId;
+    public String getUserId() {
+        return userName;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUserId(String userId) {
+        this.userName = userId;
     }
 
     @Override
@@ -72,7 +73,7 @@ public class Coord {
                 ", longitude=" + longitude +
                 ", latitude=" + latitude +
                 ", name='" + name + '\'' +
-                ", userId=" + userId +
+                ", userName=" + userName +
                 ", imgId='" + imgId + '\'' +
                 '}';
     }

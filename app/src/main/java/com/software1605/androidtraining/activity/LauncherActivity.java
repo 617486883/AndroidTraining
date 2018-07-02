@@ -8,6 +8,9 @@ import android.view.Window;
 
 import com.software1605.androidtraining.R;
 
+/**
+ * 启动页面
+ */
 public class LauncherActivity extends Activity {
     Handler handler = new Handler();
     private boolean isStarActivity = false;
