@@ -9,6 +9,7 @@ import java.io.IOException;
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.FormBody;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
@@ -102,5 +103,33 @@ public class OkhttpUtil {
         });
 
     }
+    /**
+     * 传递一个参数
+     */
+    public static void getByType(String url , String type, String data, final Handler handler){
+        OkHttpClient okHttpClient = new OkHttpClient();
+        RequestBody body = new FormBody.Builder()
+                .add(type,data)
+                .build();
 
+        Request request = new Request.Builder().post(body).url(url).build();
+
+        okHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Message message = new Message();
+                message.what = 0x123;
+                Bundle bundle = new Bundle();
+                bundle.putString("response",response.body().string());
+                message.setData(bundle);
+                handler.sendMessage(message);
+            }
+        });
+
+    }
 }

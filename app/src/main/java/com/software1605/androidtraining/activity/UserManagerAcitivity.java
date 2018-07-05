@@ -22,12 +22,14 @@ import com.software1605.androidtraining.staticDate.UserInfo;
 import java.util.HashMap;
 import java.util.Map;
 
-public class UserManager extends AppCompatActivity implements View.OnClickListener{
+//修改用户
+public class UserManagerAcitivity extends AppCompatActivity implements View.OnClickListener{
     private static final String URL = "http://wxscjy.free.ngrok.cc/user/update";
     private EditText changeName,changePassword;
     private ImageView updateBtn;
     private TextView quxiaoBtn;
     User user = UserInfo.getUserInfo().getUser();
+    String name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +38,6 @@ public class UserManager extends AppCompatActivity implements View.OnClickListen
         changePassword = findViewById(R.id.changePassNew);
         updateBtn = findViewById(R.id.update_btn);
         quxiaoBtn = findViewById(R.id.quxiao_btn);
-
         updateBtn.setOnClickListener(this);
         quxiaoBtn.setOnClickListener(this);
 
@@ -47,27 +48,29 @@ public class UserManager extends AppCompatActivity implements View.OnClickListen
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.update_btn:
-                if (changePassword.getText().toString().equals("")|| changeName.getText().toString().equals("")){
-
-                    Toast.makeText(UserManager.this,"请输入正确的内容",Toast.LENGTH_SHORT).show();
+                if (changePassword.getText().toString().equals("")&& changeName.getText().toString().equals("")){
+                    Toast.makeText(UserManagerAcitivity.this,"请输入正确的内容",Toast.LENGTH_SHORT).show();
                 }else {
                     if (user!=null ){
                         Map map = new HashMap();
+
                         map.put("name",user.getName());
-                        map.put("userName",changeName.getText().toString());
-                        map.put("password",changePassword.getText().toString());
+                        if (!changeName.getText().toString().equals("")){
+                            map.put("userName",changeName.getText().toString());
+                        }
+                        if (!changePassword.getText().toString().equals("")){
+                            map.put("password",changePassword.getText().toString());
+                        }
+
                         String json = JSON.toJSONString(map);
                         OkhttpUtil.postByJson(URL,json,handler);
-
-
-
                     }
 
                 }
 
                 break;
             case R.id.quxiao_btn:
-
+                finish();
                 break;
         }
     }
@@ -82,16 +85,21 @@ public class UserManager extends AppCompatActivity implements View.OnClickListen
                 Bundle bundle = msg.getData();
                String resp = (String) bundle.get("response");
                 Log.i("------------>",resp);
-               Map  s = JSON.parseObject(resp,Map.class);
-               String stateInfo = (String) s.get("stateInfo");
-               Toast.makeText(UserManager.this,stateInfo,Toast.LENGTH_SHORT).show();
-               int state = (int) s.get("state");
-               if (state == 200){
-                       UserInfo.getUserInfo().setUser(null);
-                       Intent intent = new Intent(UserManager.this,LoginActivity.class);
-                       startActivity(intent);
+                try {
+                    Map  s = JSON.parseObject(resp,Map.class);
+                    String stateInfo = (String) s.get("stateInfo");
+                    Toast.makeText(UserManagerAcitivity.this,stateInfo,Toast.LENGTH_SHORT).show();
+                    int state = (int) s.get("state");
+                    if (state == 200){
+                        UserInfo.getUserInfo().setUser(null);
+                        Intent intent = new Intent(UserManagerAcitivity.this,LoginActivity.class);
+                        startActivity(intent);
 
-               }
+                    }
+                }catch (Exception e){
+                    Toast.makeText(UserManagerAcitivity.this,"服务器错误",Toast.LENGTH_SHORT).show();
+                }
+
             }
         }
     };

@@ -16,8 +16,9 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.software1605.androidtraining.R;
-import com.software1605.androidtraining.activity.LikeItemActivity;
+import com.software1605.androidtraining.activity.TextActivity;
 import com.software1605.androidtraining.activity.LoginActivity;
+import com.software1605.androidtraining.activity.MyCoordActivity;
 import com.software1605.androidtraining.activity.SettingActivity;
 import com.software1605.androidtraining.entity.User;
 import com.software1605.androidtraining.staticDate.UserInfo;
@@ -50,13 +51,28 @@ public class UserFragment extends Fragment {
         TextView mycood = view.findViewById(R.id.mycood);
         TextView mytext = view.findViewById(R.id.mytext);
 
+        circleImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //用户为空跳转至登录界面
+                if (user == null){
+                    Intent intent = new Intent(getActivity(),LoginActivity.class);
+                    startActivity(intent);
+
+                }else {
+                    Intent intent = new Intent(getActivity(), SettingActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
         mycood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (user == null){
                     Toast.makeText(getActivity(),"您还未登录，请登录",Toast.LENGTH_SHORT).show();
                 }else {
-
+                    Intent intent = new Intent(getActivity(), MyCoordActivity.class);
+                    startActivity(intent);
                 }
             }
         });
@@ -67,7 +83,7 @@ public class UserFragment extends Fragment {
                 if (user == null){
                     Toast.makeText(getActivity(),"您还未登录，请登录",Toast.LENGTH_SHORT).show();
                 }else {
-                    Intent intent = new Intent(getActivity(), LikeItemActivity.class);
+                    Intent intent = new Intent(getActivity(), TextActivity.class);
                     startActivity(intent);
                 }
             }
@@ -94,8 +110,8 @@ public class UserFragment extends Fragment {
 
     @Override
     public void onStart() {
-        user = UserInfo.getUserInfo().getUser();
         super.onStart();
+        user = UserInfo.getUserInfo().getUser();
         if (user!=null){
             Log.i("------------------>", "onHiddenChanged: "+user );
             userName.setText(user.getUserName());
@@ -112,7 +128,6 @@ public class UserFragment extends Fragment {
         if (!hidden){
             user = UserInfo.getUserInfo().getUser();
             if (user!=null){
-                Log.i("------------------>", "onHiddenChanged: "+user );
                 userName.setText(user.getUserName());
                 Glide.with(getContext()).load(IMG_URL_HTTP+user.getImgUrl()).into(circleImageView);
             }else {

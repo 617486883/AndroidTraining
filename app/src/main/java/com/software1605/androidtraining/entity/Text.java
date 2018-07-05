@@ -1,6 +1,8 @@
 package com.software1605.androidtraining.entity;
 
-public class Text {
+import java.io.Serializable;
+
+public class Text implements Serializable{
     private String content;
     private int id;
     private String imgUrl;
