@@ -21,7 +21,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo2"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -46,7 +46,17 @@
 
         <service android:name="com.amap.api.location.APSService" />
 
-        <activity android:name=".activity.LikeItemActivity"></activity>
+        <activity android:name=".activity.TextActivity" />
+        <activity android:name=".activity.MyCoordActivity" />
+        <activity android:name=".activity.MyCoordItemActivity" />
+        <activity android:name=".activity.MyCoordItemAddActibity" />
+        <activity android:name=".activity.UserManagerAcitivity"/>
+        <activity android:name=".activity.TextItemActivity" />
+        <activity android:name=".activity.TextItemAddActivity" />
+        <activity android:name=".activity.AdminTableActivity" />
+        <activity android:name=".activity.AdminTextActivity" />
+        <activity android:name=".activity.AdminCoordActivity" />
+        <activity android:name=".activity.UpdateUserPasswordActivity"></activity>
     </application>
 
 </manifest>

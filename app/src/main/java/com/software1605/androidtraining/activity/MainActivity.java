@@ -1,6 +1,7 @@
 package com.software1605.androidtraining.activity;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -11,6 +12,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.software1605.androidtraining.R;
@@ -50,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
         getuser();
     }
 
@@ -108,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //通过自动登录拿到用户的线程
+    @SuppressLint("HandlerLeak")
     public void handlerManage(){
         handler = new Handler(){
             @Override
@@ -116,10 +118,16 @@ public class MainActivity extends AppCompatActivity {
                 if (msg.what == 0x123){
                     Bundle bundle = msg.getData();
                     String response = bundle.getString("response");
-                    user = JSON.parseObject(response, User.class);
-                  //重新存入
-                    UserInfo.getUserInfo().setUser(user);
-                    Log.i("list--->",response.toString());
+                    try {
+                        user = JSON.parseObject(response, User.class);
+                        //重新存入
+                        UserInfo.getUserInfo().setUser(user);
+                        Log.i("list--->",response.toString());
+                    }catch (Exception e){
+                        Toast.makeText(MainActivity.this,"连接服务器失败",Toast.LENGTH_SHORT).show();
+
+                    }
+
                 }
             }
         };

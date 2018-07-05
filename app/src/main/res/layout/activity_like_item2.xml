@@ -1,28 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".activity.TextItemActivity">
 
-    <android.support.v7.widget.SearchView
-        android:id="@+id/coor_searchview"
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:background="#ff5d5e"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp"
-        android:textColor="#000000"
-        app:iconifiedByDefault="false"
-
+        android:background="#F40"
+        android:gravity="center"
+        android:text="修改留言"
+        android:textColor="#fff"
+        android:textSize="15dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:queryBackground="@drawable/frominput"
-        app:queryHint="请输入关键字" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/back_admin"
+        android:layout_width="28dp"
+        android:layout_height="25dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView"
+        app:srcCompat="@drawable/returnwi" />
 
     <TextView
         android:id="@+id/textview19"
@@ -37,22 +45,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/coor_searchview" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-    <TextView
-        android:id="@+id/textView19"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="4dp"
-        android:background="#fff"
-        android:gravity="center_vertical"
-        android:paddingLeft="20dp"
-        android:text="纬度"
-        android:textSize="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
     <TextView
         android:id="@+id/textView18"
@@ -62,7 +56,7 @@
         android:background="#fff"
         android:gravity="center_vertical"
         android:paddingLeft="20dp"
-        android:text="经度"
+        android:text="留言"
         android:textSize="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -84,33 +78,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textview19" />
 
-    <TextView
+    <EditText
         android:id="@+id/context_item"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="8dp"
+        android:inputType="text"
         app:layout_constraintBottom_toBottomOf="@+id/textView18"
         app:layout_constraintEnd_toEndOf="@+id/textView18"
         app:layout_constraintTop_toTopOf="@+id/textView18" />
 
-    <TextView
-        android:id="@+id/longitude_item"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView19"
-        app:layout_constraintEnd_toEndOf="@+id/textView19"
-        app:layout_constraintTop_toTopOf="@+id/textView19" />
 
-    <TextView
+    <EditText
         android:id="@+id/title"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:inputType="text"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView17"
@@ -119,23 +105,35 @@
 
     <TextView
         android:id="@+id/userName"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="8dp"
+        android:text="123"
         app:layout_constraintBottom_toBottomOf="@+id/textview19"
         app:layout_constraintEnd_toEndOf="@+id/textview19"
         app:layout_constraintTop_toTopOf="@+id/textview19" />
 
-    <ListView
-        android:id="@+id/coore_listview"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+    <Button
+        android:id="@+id/delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="140dp"
+        android:text="删除"
+        app:layout_constraintEnd_toStartOf="@+id/update"
+        app:layout_constraintHorizontal_bias="0.629"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/coor_searchview" />
+        app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
-
+    <Button
+        android:id="@+id/update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="84dp"
+        android:text="修改"
+        app:layout_constraintBottom_toBottomOf="@+id/delete"
+        app:layout_constraintEnd_toEndOf="parent" />
 </android.support.constraint.ConstraintLayout>

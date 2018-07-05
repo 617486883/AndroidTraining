@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.TextActivity">
+    tools:context=".activity.MyCoordActivity">
 
     <TextView
         android:id="@+id/textView"
@@ -12,45 +12,47 @@
         android:layout_height="40dp"
         android:background="#F40"
         android:gravity="center"
-        android:text="我的留言"
+        android:text="我的地标"
         android:textColor="#fff"
-        android:textSize="20sp"
+        android:textSize="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/back_btn"
-        android:layout_width="29dp"
-        android:layout_height="26dp"
+        android:id="@+id/mycoord_back"
+        android:layout_width="28dp"
+        android:layout_height="25dp"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView"
         app:srcCompat="@drawable/returnwi" />
 
+
     <ListView
-        android:id="@+id/listView"
+        android:id="@+id/mycood_listView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/textview19"
         android:layout_width="wrap_content"
-        android:layout_height="26dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="8dp"
         android:text="添加"
         android:textColor="#fff"
-        app:layout_constraintBottom_toTopOf="@+id/listView"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

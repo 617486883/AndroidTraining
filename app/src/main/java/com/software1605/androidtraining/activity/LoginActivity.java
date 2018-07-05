@@ -117,6 +117,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.register_btn:
                 Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
                 startActivity(intent);
+                finish();
                 break;
                 //点击登录
             case R.id.login_btn:
@@ -135,7 +136,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
                 //点击忘记密码
             case R.id.passwordbtn:
-
+              Intent intent1 = new Intent(LoginActivity.this,UpdateUserPasswordActivity.class);
+              startActivity(intent1);
+              finish();
                 break;
         }
     }
